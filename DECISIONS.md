@@ -97,6 +97,57 @@ rule (if any) triggered it.
   case). This is now used explicitly in the Conclusion as the formal basis for treating the loan-level
   U-shape, not the country-level curvature, as the paper's central nonlinear finding.
 
+## Phase 2e — Extensive margin held to the Lind–Mehlum standard
+
+- **Trigger**: final review of Phase 2a–d found that Section 5.4 established "quadratic significance is
+  necessary but not sufficient; Lind–Mehlum (2010) is the standard for shape claims" and used it to reject
+  m6's inverted-U — but the paper's headline finding (Section 5.3's extensive-margin Logit) was never
+  subjected to that same test, despite the Abstract calling it a "genuine, statistically significant
+  inverted-U." This is an internal inconsistency: the paper cannot hold one margin to a stricter standard
+  than another.
+- **Test result, as predicted**: reused the existing `lind_mehlum_utest()` helper (cell 54; no new
+  implementation needed — it already accepts any fitted statsmodels result with a linear/quadratic
+  coefficient pair and a `cov_params()` matrix, so it applies directly to `logit_fit` on its native
+  log-odds scale) against `logit_fit`, `"c_log_gdp_pc"`, `"c_log_gdp_pc_sq"`, evaluated at `gpanel`'s
+  actual min/max of centered log GDP per capita. Result: **slope_low = 0.654, t_low = 1.065 (one-sided p =
+  0.143, fails the 5% bar of 1.645)**; **slope_high = −2.742, t_high = −3.028 (one-sided p < 0.001,
+  clears the bar easily)**; `shape_confirmed = False`; Fieller 95% CI for the turning point (centered) =
+  [−10.384, −1.216] — wide but bounded, unlike m6's unbounded interval. This matches the task brief's
+  predicted outcome (t_low upper bound ≈1.23) almost exactly (1.065 < 1.23), so the **"unexpected pass"
+  branch was NOT triggered** — all replacement text was written as the "test failed" (downgrade) version,
+  with no hedging or dual-branch language left in the prose.
+- **Table 10** gained a third row, "Logit (global, extensive margin)," and its title was changed to
+  reflect all three models tested. The Section 5.4 intro (cell 53) was updated to say the test is applied
+  to "all three shape claims in the paper," not "the two preferred quadratic specifications."
+- **Wording discipline applied**: every instance of "genuine inverted-U" / "significantly
+  inverted-U-shaped" describing the **extensive margin** was rewritten to "significantly concave, with a
+  steep decline; peak/initial rise unconfirmed" — in the Abstract, Introduction, Sections 5.3 and 5.4, and
+  the Conclusion (both the narrative paragraph and the numbered summary list). Two numeric asides were
+  corrected in passing, per the task's "顺带修三处小错" instruction interpreted narrowly to what the task
+  actually specified: (1) the loan-level relative-size robustness result in the Abstract was updated from
+  the mechanical FWL-identity restatement to the actually-informative attenuated coefficient (0.245 →
+  0.148, already computed and reported in Section 6.3/DECISIONS.md 2c, just not previously surfaced in the
+  Abstract); (2) the PPML Kiva-active-sample count in Section 5.3 was corrected from "374" to "369 of the
+  374 (five drop for missing institutional controls)" to match the actual estimation sample rather than
+  the full candidate sample; (3) the Section 5.4 intro's claim that Lind–Mehlum was applied to "the two
+  preferred quadratic specifications" was corrected to "all three shape claims," since it undercounted
+  once the extensive-margin Logit was added to Table 10 — leaving it unpatched would have made the
+  section's own opening sentence wrong given the very addition this patch introduces.
+- **Explicitly left untouched, per the task's instruction**: `lm6`'s U-shape language (loan-level, size
+  margin) — that result passed Lind–Mehlum decisively (t_low ≈ −5.75, t_high ≈ 10.95, p < 0.001) in Phase
+  2d and remains the paper's one confirmed nonlinearity. Also untouched: all descriptive/hypothesis-origin
+  mentions of "peak" in Sections 3 and 5.1 (cells 7, 10, 13, 27, 36) — those describe the *original,
+  since-rejected* middle-income-peak hypothesis or the country-level (m6) pattern, which already reads as
+  "not confirmed," so they were already consistent with the new discipline and needed no edit.
+- **Consistency scan (Task 3)**: grepped every markdown cell for `inverted-U`, `peak`, `rise` (case
+  variants included) and manually classified each hit as either (a) about a hypothesis/description/lm6 —
+  left alone, or (b) a conclusion about the extensive margin — rewritten. No stray "genuine inverted-U"
+  language about the extensive margin survived the scan after edits (cells 0, 52, 53, 55, 67 were the only
+  ones requiring changes).
+- **Push**: `git push backup HEAD:revision` and the `v1.2` tag push were attempted per the task's explicit
+  instruction; outcomes are recorded in the final report rather than here, since push success depends on
+  runtime network/auth state that isn't a "decision."
+
 ## Commit granularity (deviation from the "commit per subtask" instruction)
 
 - Subtasks 2a–2d all modify the same single notebook file (`paper_publication_version.ipynb`), and were

@@ -7,11 +7,13 @@ All analysis scripts assume data are stored locally under the /data directory.
 The paper tests whether Kiva microfinance activity follows an inverted-U ("middle-income peak") pattern
 with economic development, at three distinct margins:
 
-1. **Extensive margin (country level): does Kiva operate in a country at all?** Significantly
-   inverted-U-shaped. A Logit model on a global country-year panel (including true zero-lending
+1. **Extensive margin (country level): does Kiva operate in a country at all?** Significantly concave,
+   with a steep decline. A Logit model on a global country-year panel (including true zero-lending
    country-years, not just Kiva-active ones) finds a negative, statistically significant quadratic term
-   (p = 0.023; average marginal effect p = 0.018): the probability Kiva is active rises from the poorest
-   income decile to a peak in the second decile, then declines to near zero among the richest countries.
+   (p = 0.023; average marginal effect p = 0.018), and entry probability falls sharply as countries
+   develop. Held to the same Lind–Mehlum (2010) U-test as the other margins, the high end of this decline
+   is confirmed but the initial rise among the very poorest countries is not statistically distinguishable
+   from flat — so a completed inverted-U is suggestive but not formally established.
 2. **Quantity margin (country level, conditional on Kiva being active): how much total lending does a
    country receive?** Not significantly nonlinear. The quadratic term in log GDP per capita is negative in
    every country-year OLS specification but never significant (p > 0.10), and this holds whether estimated
@@ -44,8 +46,9 @@ typical loan size follow different, and in one case opposite-signed, patterns.
   error, tested as an intersection-union pair (the test statistic is the weaker of the two end t-statistics
   — both ends must independently clear significance with opposite signs), plus a **Fieller (1954)
   confidence interval** for the turning point that correctly accounts for it being a ratio of two
-  correlated estimated coefficients. Applied to the preferred country-year and loan-level quadratic models
-  and to all loan-level robustness variants.
+  correlated estimated coefficients. Applied to the preferred country-year and loan-level quadratic models,
+  to the extensive-margin Logit (on its linear-index/log-odds scale), and to all loan-level robustness
+  variants.
 - **Sample-period and loan-level robustness checks**: a data-driven decision rule for whether to include
   the panel's first year (2013) based on month/loan/country coverage in the raw data (year and month
   extracted directly from Kiva's `posted_time` field); re-estimation excluding the United States; a

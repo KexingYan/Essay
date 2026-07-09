@@ -1,0 +1,5 @@
+Metric,Value
+Total countries in master,96
+Countries with poverty_rate,86
+Countries with urban_rural_gap,72
+Countries with both (poverty_rate + urban_rural_gap),69

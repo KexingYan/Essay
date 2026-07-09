@@ -1,0 +1,4 @@
+poverty_tercile,num_countries,num_loans,total_loan_amount,avg_loans_per_capita
+Low poverty,29,810358,549163250.0,0.00046359859875989764
+Medium poverty,28,337568,377415300.0,0.0010120458013534376
+High poverty,28,240571,218633400.0,0.0016435610282063977

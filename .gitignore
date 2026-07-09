@@ -1,0 +1,16 @@
+# Loan-level panel (~918k rows) - too large / not needed in the backup repo
+outputs/final_panel_loan_level.csv
+
+# Raw data dumps (e.g. Kiva raw loans export) - keep large source data out of git
+data/loans.csv
+data/kiva_loans.csv
+data/kiva.csv
+
+# Jupyter
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+.venv/

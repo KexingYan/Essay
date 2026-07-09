@@ -60,12 +60,22 @@ implied turning point is at log GDP per capita = 7.456 (≈ $1,731 in constant 2
 numerically inside the sample range, but this is not meaningful given the quadratic term itself is
 statistically indistinguishable from zero.
 
-## Table 3/4 — Loan-level regressions (NOT independently re-executed — data missing)
+## Table 3/4 — Loan-level regressions (re-verified in Phase 2)
 
-Per the user's own prior diagnosis (not re-verified in this session due to missing
-`final_panel_loan_level.csv`): the loan-level quadratic term is reported as **+0.245, p < 0.01** — a
-statistically significant **positive** (U-shaped) coefficient, opposite in sign to the country-level
-result above. This must be re-verified once the loan-level file is available (see open item in Phase 1).
+**Update (Phase 2 setup, 2026-07-09):** the raw Kiva `loans.csv` was located at
+`/Users/klicy/Downloads/loans.csv` (1,419,607 rows) and symlinked to `data/loans.csv`.
+`analysis/build_final_panel_loan_level.py` was patched to use portable relative paths (previously
+hardcoded to a Windows machine) and re-run, producing `outputs/final_panel_loan_level.csv` with
+**917,955 rows across 90 countries, 2013–2017** — matching the ~918k rows referenced in the task spec.
+Independently re-estimating lm6 (`log_loan_amount ~ c_log_gdp_pc + c_log_gdp_pc_sq + institutional_pca1
++ log_population + C(year)`, country-year clustered SE) on this rebuilt file reproduces the previously
+reported coefficient almost exactly: **c_log_gdp_pc_sq = 0.2447, p = 2.4e-18** (N = 913,128), confirming
+the statistically significant, positive (U-shaped) loan-level pattern reported below is not an artifact
+of an unverified prior run.
+
+Original text (retained for the record): per the user's own prior diagnosis, the loan-level quadratic
+term is reported as **+0.245, p < 0.01** — a statistically significant **positive** (U-shaped)
+coefficient, opposite in sign to the country-level result above.
 
 ## Confirmed bugs
 

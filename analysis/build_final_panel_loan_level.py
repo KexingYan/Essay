@@ -4,14 +4,15 @@
 
 import os
 import glob
+from pathlib import Path
 import pandas as pd
 import numpy as np
 
 # -----------------------------
-# Paths (EDIT if needed)
+# Paths (relative to repo root, portable across machines)
 # -----------------------------
-REPO_DIR = r"C:\Users\Klicy\github-classroom\ECO225-2026\eco225-project-KexingYan"
-DATA_DIR_D = r"D:\ECO225_DATA"
+REPO_DIR = str(Path(__file__).resolve().parents[1])
+DATA_DIR_D = REPO_DIR  # no separate external data drive on this machine; same dir
 
 DATA_REPO_DIR = os.path.join(REPO_DIR, "data")
 OUT_DIR = os.path.join(REPO_DIR, "outputs")

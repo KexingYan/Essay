@@ -122,3 +122,86 @@ coefficient, opposite in sign to the country-level result above.
 This directly contradicts the notebook's own Table 2 output (quadratic term insignificant, p > 0.10 in
 all four specifications) and is inconsistent with Table 4's reported sign (positive/U-shaped, the
 opposite of the inverted-U claimed here). This is the passage that Phase 1b must rewrite.
+
+---
+
+# Phase 2 Results — New vs. Old
+
+Recorded 2026-07-09 after implementing subtasks 2a–2d. All numbers below were produced by an actual
+`--execute --inplace` run of `paper_publication_version.ipynb` (70 cells, 0 error outputs).
+
+## 2a — Sample period coverage (new)
+
+| Year | N loans | Total $ | N countries | Months covered | % of 2014 loans |
+|---|---|---|---|---|---|
+| 2013 | 140,034 | $133.0M | 74 | 12/12 | 80.4% |
+| 2014 | 174,234 | $152.9M | 81 | 12/12 | 100.0% |
+| 2015 | 181,833 | $157.6M | 77 | 12/12 | 104.4% |
+| 2016 | 197,236 | $164.4M | 74 | 12/12 | 113.2% |
+| 2017 | 224,618 | $175.6M | 76 | 12/12 | 128.9% |
+
+**Decision: KEEP full 2013–2017 sample** (2013 is a complete 12-month year, above both disqualifying
+thresholds). Section 6.2 re-estimates m6 and lm6 on 2014–2017 only as a direct check:
+
+| | Full sample | 2014-2017 only |
+|---|---|---|
+| m6 quadratic term | −0.168 (p=0.180) | −0.176 (p=0.159) |
+| lm6 quadratic term | 0.245 (p<0.001) | 0.246 (p<0.001) |
+
+Both conclusions (insignificant at country level, significant at loan level) are unchanged.
+
+## 2b — Extensive vs. intensive margins (new)
+
+Global country-year panel: 1,020 country-years, 206 countries, 374 (36.7%) Kiva-active, 65 rows dropped
+for missing WDI GDP/population.
+
+| | Coefficient | p-value |
+|---|---|---|
+| Logit (extensive margin), quadratic term | −0.260 | **0.023** |
+| Logit AME, quadratic term | −0.040 | **0.018** |
+| PPML global incl. zeros, quadratic term | −0.232 | 0.242 |
+| PPML Kiva-only, quadratic term | −0.070 | 0.530 |
+
+**New finding: the extensive margin (whether Kiva operates in a country at all) is significantly
+inverted-U-shaped** (turning point ≈ $893, within sample range), while total lending *volume* — whether
+estimated with OLS-in-logs (Table 4, pre-existing) or PPML on either sample — is not. This was not
+previously tested; Phase 0/1 only had the (insignificant) OLS-in-logs country-level result.
+
+## 2c — Loan-level robustness (new)
+
+| Variant | Quadratic term | p |
+|---|---|---|
+| (1) lm6 baseline | 0.245 | <0.001 |
+| (2) Excl. US (0.9% of loans) | 0.332 | <0.001 |
+| (3) Relative size (loan/GDPpc) | 0.245 (identical to (1) by FWL construction — see caveat below) | <0.001 |
+| (4) Sector FE (15 sectors) | 0.234 | <0.001 |
+| (3-supplementary) Relative size, no linear GDP control | 0.148 | 0.002 |
+
+**Important honesty note (not hidden):** variant (3) as literally specified reproduces the baseline
+quadratic coefficient to 4 decimal places because `log(loan/gdp_pc) = log_loan_amount - log_gdp_pc`, and
+`log_gdp_pc` is already the model's own linear regressor — a Frisch-Waugh-Lovell algebraic identity, not
+independent confirmation. The supplementary check (same outcome, linear GDP control removed) shows the
+U-shape **attenuates from 0.245 to 0.148 but remains significant**, meaning part of the nominal-dollar
+U-shape likely reflects local price-level scaling, but not all of it.
+
+## 2d — Lind–Mehlum (2010) U-test (new)
+
+| Model | t (low end) | t (high end) | Shape confirmed? | Turning point (Fieller 95% CI) |
+|---|---|---|---|---|
+| m6 (country-year, volume) | 1.08 | −1.48 | **No** (p=0.140) | unbounded |
+| lm6 (loan-level, size) | −5.75 | 10.95 | **Yes** (p<0.001) | log GDP ≈7.36 [7.05, 7.59] (~\$1,150–\$1,970) |
+| lm6 excl. US | −4.87 | 7.13 | Yes (p<0.001) | — |
+| lm6 relative size | −12.19 | 4.75 | Yes (p<0.001) | — |
+| lm6 sector FE | −5.65 | 11.07 | Yes (p<0.001) | — |
+
+This is the formal, independent confirmation (beyond p-values on the quadratic term alone) that the
+country-level "peak" fails even a test designed to be charitable to curvature, while the loan-level
+U-shape passes decisively and has a turning point tightly bracketed well inside the sample range.
+
+## Data recovered
+
+The raw `loans.csv` (missing in Phase 0/1) was located at `/Users/klicy/Downloads/loans.csv` and used to
+rebuild `outputs/final_panel_loan_level.csv` (917,955 rows) and two new derived files: an augmented
+loan-level file with sector/GDP-level columns (`outputs/final_panel_loan_level_augmented_2c.csv`, 183MB,
+gitignored) and a global country-year panel with zero-lending observations
+(`outputs/final_panel_global_extensive.csv`, 1,020 rows, committed).

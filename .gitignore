@@ -1,5 +1,6 @@
 # Loan-level panel (~918k rows) - too large / not needed in the backup repo
 outputs/final_panel_loan_level.csv
+outputs/final_panel_loan_level_augmented_2c.csv
 
 # Raw data dumps (e.g. Kiva raw loans export) - keep large source data out of git
 data/loans.csv

@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+\centering
+\caption{Two Margins: Logit (Extensive) vs. PPML (Intensive), Development Terms}
+\label{tab:table9}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+Covariate & Logit coef. & Logit p & Logit AME & PPML (global) coef. & PPML (global) p & PPML (Kiva-only) coef. & PPML (Kiva-only) p \\
+\midrule
+Log GDP per capita (centered) & -1.0265 & 0.0000 & -0.1569 & -0.5407 & 0.1611 & -0.0055 & 0.9808 \\
+Log GDP per capita\textsuperscript{2} (centered) & -0.2603 & 0.0226 & -0.0398 & -0.2318 & 0.2417 & -0.0698 & 0.5300 \\
+\bottomrule
+\end{tabular}%
+}
+\par\smallskip\footnotesize Logit: global panel including zero-lending country-years, country-clustered SE. PPML (global): same sample; PPML (Kiva-only): restricted to Kiva-active country-years. All models include year fixed effects and log population; PPML (Kiva-only) also includes institutional quality.
+\end{table}

@@ -1,0 +1,494 @@
+{
+  "n_reg": 357,
+  "n_countries_reg": 84,
+  "n_loan": 917955,
+  "n_gpanel": 1020,
+  "n_gpanel_zero": 646,
+  "m5": {
+    "c_log_gdp_pc": -0.11725616957845464,
+    "c_log_gdp_pc_sq": -0.15526309858615556,
+    "p_sq": 0.18102394349953244,
+    "N": 348
+  },
+  "m6": {
+    "c_log_gdp_pc": -0.11056783090949068,
+    "p": 0.5018476967368761,
+    "c_log_gdp_pc_sq": -0.16762965655507142,
+    "p_sq": 0.17949323742979917,
+    "N": 348
+  },
+  "m7": {
+    "c_log_gdp_pc_sq": -0.1699747534306184,
+    "p_sq": 0.17440212734303195,
+    "N": 348
+  },
+  "m8": {
+    "c_log_gdp_pc_sq": -0.20125715236598812,
+    "p_sq": 0.10237940673369834,
+    "N": 319
+  },
+  "m5_turning_point_log_gdp": 7.45646417728141,
+  "m5_turning_point_usd": 1731.0166559442357,
+  "table3b": [
+    {
+      "level": "25th percentile",
+      "value": -0.5677,
+      "marginal_effect": 0.0125,
+      "se": 0.1984,
+      "p_value": 0.9498
+    },
+    {
+      "level": "Mean",
+      "value": -0.1315,
+      "marginal_effect": -0.0973,
+      "se": 0.167,
+      "p_value": 0.56
+    },
+    {
+      "level": "75th percentile",
+      "value": 0.4171,
+      "marginal_effect": -0.2354,
+      "se": 0.1842,
+      "p_value": 0.2012
+    }
+  ],
+  "lm1_N": 913128,
+  "lm2_N": 913128,
+  "lm5_N": 913128,
+  "lm8_N": 891246,
+  "lm6": {
+    "c_log_gdp_pc": 0.20551782055645126,
+    "c_log_gdp_pc_sq": 0.24470659624425728,
+    "p_sq": 2.3837406469569737e-18,
+    "N": 913128
+  },
+  "lm6_turning_point_log_gdp": 7.36315765504763,
+  "lm6_turning_point_usd": 1576.8077250918625,
+  "table5b": [
+    {
+      "level": "25th percentile",
+      "value": -0.2899,
+      "marginal_effect": 0.189,
+      "se": 0.0573,
+      "p_value": 0.001
+    },
+    {
+      "level": "Mean",
+      "value": -0.1465,
+      "marginal_effect": 0.2251,
+      "se": 0.0555,
+      "p_value": 0.0
+    },
+    {
+      "level": "75th percentile",
+      "value": -0.0117,
+      "marginal_effect": 0.2591,
+      "se": 0.0544,
+      "p_value": 0.0
+    }
+  ],
+  "table7": {
+    "Country-year-clustered SE": {
+      "Log GDP per capita (centered)": 0.0493,
+      "Log GDP per capita\\textsuperscript{2} (centered)": 0.028,
+      "Institutional quality (PCA1)": 0.0665,
+      "Log population": 0.0267
+    },
+    "Country-clustered SE": {
+      "Log GDP per capita (centered)": 0.0925,
+      "Log GDP per capita\\textsuperscript{2} (centered)": 0.0561,
+      "Institutional quality (PCA1)": 0.1341,
+      "Log population": 0.0566
+    }
+  },
+  "logit": {
+    "c_log_gdp_pc": -1.0264596046363355,
+    "p": 4.83744097473589e-07,
+    "c_log_gdp_pc_sq": -0.26030350423674997,
+    "p_sq": 0.022588578752180465,
+    "ame_sq": -0.0397956469793404,
+    "ame_sq_p": 0.0183181349022087,
+    "N": 1020
+  },
+  "ppml_global": {
+    "c_log_gdp_pc_sq": -0.23181951551464502,
+    "p_sq": 0.24171444516447949,
+    "N": 1020
+  },
+  "ppml_kiva": {
+    "c_log_gdp_pc_sq": -0.06981308363001369,
+    "p_sq": 0.529994384566141,
+    "N": 369
+  },
+  "table9": {
+    "Logit coef.": {
+      "Log GDP per capita (centered)": -1.0265,
+      "Log GDP per capita\\textsuperscript{2} (centered)": -0.2603
+    },
+    "Logit p": {
+      "Log GDP per capita (centered)": 0.0,
+      "Log GDP per capita\\textsuperscript{2} (centered)": 0.0226
+    },
+    "Logit AME": {
+      "Log GDP per capita (centered)": -0.1569,
+      "Log GDP per capita\\textsuperscript{2} (centered)": -0.0398
+    },
+    "PPML (global) coef.": {
+      "Log GDP per capita (centered)": -0.5407,
+      "Log GDP per capita\\textsuperscript{2} (centered)": -0.2318
+    },
+    "PPML (global) p": {
+      "Log GDP per capita (centered)": 0.1611,
+      "Log GDP per capita\\textsuperscript{2} (centered)": 0.2417
+    },
+    "PPML (Kiva-only) coef.": {
+      "Log GDP per capita (centered)": -0.0055,
+      "Log GDP per capita\\textsuperscript{2} (centered)": -0.0698
+    },
+    "PPML (Kiva-only) p": {
+      "Log GDP per capita (centered)": 0.9808,
+      "Log GDP per capita\\textsuperscript{2} (centered)": 0.53
+    }
+  },
+  "entry_by_decile": [
+    {
+      "gdp_decile": 1,
+      "mean_log_gdp_pc": 6.3993,
+      "entry_rate": 0.6471,
+      "n": 102
+    },
+    {
+      "gdp_decile": 2,
+      "mean_log_gdp_pc": 7.0945,
+      "entry_rate": 0.7157,
+      "n": 102
+    },
+    {
+      "gdp_decile": 3,
+      "mean_log_gdp_pc": 7.6647,
+      "entry_rate": 0.6569,
+      "n": 102
+    },
+    {
+      "gdp_decile": 4,
+      "mean_log_gdp_pc": 8.1589,
+      "entry_rate": 0.5,
+      "n": 102
+    },
+    {
+      "gdp_decile": 5,
+      "mean_log_gdp_pc": 8.5262,
+      "entry_rate": 0.3627,
+      "n": 102
+    },
+    {
+      "gdp_decile": 6,
+      "mean_log_gdp_pc": 8.8951,
+      "entry_rate": 0.402,
+      "n": 102
+    },
+    {
+      "gdp_decile": 7,
+      "mean_log_gdp_pc": 9.3831,
+      "entry_rate": 0.2549,
+      "n": 102
+    },
+    {
+      "gdp_decile": 8,
+      "mean_log_gdp_pc": 9.9319,
+      "entry_rate": 0.0098,
+      "n": 102
+    },
+    {
+      "gdp_decile": 9,
+      "mean_log_gdp_pc": 10.5013,
+      "entry_rate": 0.0686,
+      "n": 102
+    },
+    {
+      "gdp_decile": 10,
+      "mean_log_gdp_pc": 11.106,
+      "entry_rate": 0.049,
+      "n": 102
+    }
+  ],
+  "utest_m6": {
+    "slope_low": 0.6589028973724615,
+    "t_low": 1.07978118095743,
+    "slope_high": -1.162189629466328,
+    "t_high": -1.4782306582242797,
+    "opposite_signs": "True",
+    "u_test_t": 1.07978118095743,
+    "u_test_p": 0.14011981667121942,
+    "shape_confirmed": false,
+    "turning_point_centered": -0.32979794023847386,
+    "turning_point_ci_centered": [
+      -Infinity,
+      Infinity
+    ],
+    "fieller_valid": false
+  },
+  "utest_lm6": {
+    "slope_low": -0.8928069566372095,
+    "t_low": -5.751691426421615,
+    "slope_high": 1.765632861511376,
+    "t_high": 10.953800839045352,
+    "opposite_signs": "True",
+    "u_test_t": 5.751691426421615,
+    "u_test_p": 4.41774794524008e-09,
+    "shape_confirmed": true,
+    "turning_point_centered": -0.4199270140460595,
+    "turning_point_ci_centered": [
+      -0.7304512166146586,
+      -0.19802857486988729
+    ],
+    "fieller_valid": true
+  },
+  "utest_logit": {
+    "slope_low": 0.6536243264936119,
+    "t_low": 1.0651493071596214,
+    "slope_high": -2.7422029942876516,
+    "t_high": -3.028233927189949,
+    "opposite_signs": "True",
+    "u_test_t": 1.0651493071596214,
+    "u_test_p": 0.1434041846671561,
+    "shape_confirmed": false,
+    "turning_point_centered": -1.971659213052228,
+    "turning_point_ci_centered": [
+      -10.384198555084584,
+      -1.215671645762913
+    ],
+    "fieller_valid": true
+  },
+  "table11": {
+    "c_log_gdp_pc": {
+      "m6, full sample (2013-2017)": -0.1106,
+      "m6, 2014-2017 only": -0.0947,
+      "lm6, full sample (2013-2017)": 0.2055,
+      "lm6, 2014-2017 only": 0.1874
+    },
+    "p": {
+      "m6, full sample (2013-2017)": 0.5018,
+      "m6, 2014-2017 only": 0.5945,
+      "lm6, full sample (2013-2017)": 0.0,
+      "lm6, 2014-2017 only": 0.0008
+    },
+    "c_log_gdp_pc_sq": {
+      "m6, full sample (2013-2017)": -0.1676,
+      "m6, 2014-2017 only": -0.176,
+      "lm6, full sample (2013-2017)": 0.2447,
+      "lm6, 2014-2017 only": 0.2456
+    },
+    "p (sq)": {
+      "m6, full sample (2013-2017)": 0.1795,
+      "m6, 2014-2017 only": 0.1594,
+      "lm6, full sample (2013-2017)": 0.0,
+      "lm6, 2014-2017 only": 0.0
+    },
+    "N": {
+      "m6, full sample (2013-2017)": 348.0,
+      "m6, 2014-2017 only": 294.0,
+      "lm6, full sample (2013-2017)": 913128.0,
+      "lm6, 2014-2017 only": 776306.0
+    }
+  },
+  "lm6_rel_no_linear": {
+    "c_log_gdp_pc_sq": 0.14762536083023803,
+    "p_sq": 0.0017453744398424208,
+    "N": 913128
+  },
+  "lm6_on_2c_file_c_log_gdp_pc": 0.2055178205561757,
+  "lm6_rel_c_log_gdp_pc": -0.7944821794428554,
+  "table12": {
+    "c_log_gdp_pc": {
+      "(1) Baseline (lm6)": 0.2055,
+      "(2) Excluding US": 0.2289,
+      "(3) Relative loan size": -0.7945,
+      "(4) Sector fixed effects": 0.1925
+    },
+    "p": {
+      "(1) Baseline (lm6)": 0.0,
+      "(2) Excluding US": 0.0,
+      "(3) Relative loan size": 0.0,
+      "(4) Sector fixed effects": 0.0001
+    },
+    "c_log_gdp_pc_sq": {
+      "(1) Baseline (lm6)": 0.2447,
+      "(2) Excluding US": 0.3322,
+      "(3) Relative loan size": 0.2447,
+      "(4) Sector fixed effects": 0.234
+    },
+    "p (sq)": {
+      "(1) Baseline (lm6)": 0.0,
+      "(2) Excluding US": 0.0,
+      "(3) Relative loan size": 0.0,
+      "(4) Sector fixed effects": 0.0
+    },
+    "N": {
+      "(1) Baseline (lm6)": 913128.0,
+      "(2) Excluding US": 904855.0,
+      "(3) Relative loan size": 913128.0,
+      "(4) Sector fixed effects": 913128.0
+    }
+  },
+  "table13": {
+    "(1) Baseline (lm6)": {
+      "t_low": -5.751691426399715,
+      "t_high": 10.95380083899162,
+      "u_test_p": 4.41774794524008e-09,
+      "shape_confirmed": true
+    },
+    "(2) Excluding US": {
+      "t_low": -4.867803229930973,
+      "t_high": 7.128977736270433,
+      "u_test_p": 5.642280184181558e-07,
+      "shape_confirmed": true
+    },
+    "(3) Relative loan size": {
+      "t_low": -12.193947933953794,
+      "t_high": 4.749905862990816,
+      "u_test_p": 1.0175568112558153e-06,
+      "shape_confirmed": true
+    },
+    "(4) Sector fixed effects": {
+      "t_low": -5.649736577222124,
+      "t_high": 11.070625460809724,
+      "u_test_p": 8.034694687353294e-09,
+      "shape_confirmed": true
+    }
+  },
+  "table1": {
+    "N": {
+      "Log Total Loan Amount": 357.0,
+      "Log GDP per capita": 351.0,
+      "Institutional quality (PCA1)": 352.0,
+      "Institutional quality index": 352.0,
+      "Financial access index": 323.0,
+      "Log population": 354.0,
+      "Poverty Rate": 151.0
+    },
+    "Mean": {
+      "Log Total Loan Amount": 12.9547,
+      "Log GDP per capita": 7.8341,
+      "Institutional quality (PCA1)": -0.1315,
+      "Institutional quality index": -0.1145,
+      "Financial access index": 0.0691,
+      "Log population": 16.6402,
+      "Poverty Rate": 11.7974
+    },
+    "SD": {
+      "Log Total Loan Amount": 1.9331,
+      "Log GDP per capita": 1.0673,
+      "Institutional quality (PCA1)": 0.8842,
+      "Institutional quality index": 0.8032,
+      "Financial access index": 1.0955,
+      "Log population": 1.6171,
+      "Poverty Rate": 17.0164
+    },
+    "Min": {
+      "Log Total Loan Amount": 7.1507,
+      "Log GDP per capita": 5.5389,
+      "Institutional quality (PCA1)": -2.5513,
+      "Institutional quality index": -2.3246,
+      "Financial access index": -0.9452,
+      "Log population": 12.1881,
+      "Poverty Rate": 0.0
+    },
+    "Median": {
+      "Log Total Loan Amount": 13.137,
+      "Log GDP per capita": 7.7763,
+      "Institutional quality (PCA1)": -0.0847,
+      "Institutional quality index": -0.0748,
+      "Financial access index": -0.1448,
+      "Log population": 16.5884,
+      "Poverty Rate": 4.8
+    },
+    "Max": {
+      "Log Total Loan Amount": 16.6017,
+      "Log GDP per capita": 10.9708,
+      "Institutional quality (PCA1)": 1.9551,
+      "Institutional quality index": 1.8976,
+      "Financial access index": 6.8608,
+      "Log population": 21.0665,
+      "Poverty Rate": 75.8
+    }
+  },
+  "table2": {
+    "observations": {
+      "Low development": 116,
+      "Middle development": 116,
+      "High development": 116
+    },
+    "mean_log_loan": {
+      "Low development": 12.8056,
+      "Middle development": 13.4355,
+      "High development": 12.7757
+    },
+    "mean_log_gdp_pc": {
+      "Low development": 6.7083,
+      "Middle development": 7.7551,
+      "High development": 9.0197
+    },
+    "mean_institution": {
+      "Low development": -0.6192,
+      "Middle development": -0.2291,
+      "High development": 0.4366
+    },
+    "mean_log_population": {
+      "Low development": 16.598,
+      "Middle development": 16.8446,
+      "High development": 16.5748
+    }
+  },
+  "tableA1": {
+    "N loans": {
+      "2013": 140034,
+      "2014": 174234,
+      "2015": 181833,
+      "2016": 197236,
+      "2017": 224618
+    },
+    "Total loan amount (USD)": {
+      "2013": 133018800.0,
+      "2014": 152924550.0,
+      "2015": 157622925.0,
+      "2016": 164434750.0,
+      "2017": 175581800.0
+    },
+    "N countries": {
+      "2013": 74,
+      "2014": 81,
+      "2015": 77,
+      "2016": 74,
+      "2017": 76
+    },
+    "Months covered (of 12)": {
+      "2013": 12,
+      "2014": 12,
+      "2015": 12,
+      "2016": 12,
+      "2017": 12
+    },
+    "Min monthly loans": {
+      "2013": 9658,
+      "2014": 11735,
+      "2015": 12405,
+      "2016": 13559,
+      "2017": 16114
+    },
+    "Max monthly loans": {
+      "2013": 13357,
+      "2014": 16484,
+      "2015": 16369,
+      "2016": 18474,
+      "2017": 22954
+    },
+    "N loans, \\% of 2014": {
+      "2013": 80.4,
+      "2014": 100.0,
+      "2015": 104.4,
+      "2016": 113.2,
+      "2017": 128.9
+    }
+  }
+}

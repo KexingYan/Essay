@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\caption{Loan-Level Robustness: lm6 Under Four Specifications}
+\label{tab:table12}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+Specification & Linear coef. & $p$ & Quadratic coef. & $p$ (sq.) & N \\
+\midrule
+(1) Baseline (lm6) & 0.2055 & 0.0000 & 0.2447 & 0.0000 & 913128.0000 \\
+(2) Excluding US & 0.2289 & 0.0000 & 0.3322 & 0.0000 & 904855.0000 \\
+(3) Relative loan size & -0.7945 & 0.0000 & 0.2447 & 0.0000 & 913128.0000 \\
+(4) Sector fixed effects & 0.1925 & 0.0001 & 0.2340 & 0.0000 & 913128.0000 \\
+\bottomrule
+\end{tabular}%
+}
+\par\smallskip\footnotesize (3) Relative loan size regresses log(loan amount / local GDP per capita) on the same controls; because log GDP per capita already enters linearly, this reproduces (1) by a Frisch--Waugh--Lovell identity and is not independently informative about curvature (see text). All columns use country-year-clustered standard errors.
+\end{table}

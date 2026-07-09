@@ -69,12 +69,20 @@ result above. This must be re-verified once the loan-level file is available (se
 
 ## Confirmed bugs
 
-1. **Map bug (France/Norway silently dropped).** Cell constructing `world` filters
-   `world[world["ISO_A2"] != "-99"]`. In Natural Earth 110m data, France and Norway both have
-   `ISO_A2 == "-99"` (multi-territory country quirk), so this filter removes them before the merge.
-   Confirmed in this run: of 82 panel country codes considered (84 minus 2 legitimately unmatched — `WS`
-   Samoa, `XK` Kosovo — which are absent from the 110m shapefile), only **80 matched**, i.e. two more
-   were silently lost. Those two are France and Norway.
+1. **Map bug (`ISO_A2 == "-99"` silently drops five territories' geometry).** Cell constructing `world`
+   filters `world[world["ISO_A2"] != "-99"]`. In Natural Earth 110m data, five territories are coded
+   `ISO_A2 == "-99"`: France, Norway, Northern Cyprus, Somaliland, and Kosovo. This filter removes all
+   five countries' geometry from the map entirely (not just their data — their outline), before any merge
+   happens. **Correction (verified directly against the panel, superseding an earlier unverified guess in
+   this file):** of the 84 Kiva-panel countries, only **Kosovo (XK)** is among the five `-99` codes, so it
+   is the only one whose actual lending data was being lost by this bug (France, Norway, Northern Cyprus,
+   and Somaliland are not Kiva-active countries in this panel at all, so they were never going to show
+   lending data regardless — the bug there is purely cosmetic, leaving unexplained holes in the map where
+   there should be a "no data" grey fill). Direct check: matching on `ISO_A2` (old, buggy) finds 81/84
+   panel countries with unmatched = `['VC', 'WS', 'XK']`; matching on `ISO_A2_EH` (fixed) finds 82/84 with
+   unmatched = `['VC', 'WS']` — i.e. the fix recovers exactly Kosovo. `VC` (Saint Vincent and the
+   Grenadines) and `WS` (Samoa) remain unmatched under either approach because the low-resolution 110m
+   shapefile does not include separate polygons for them at all.
 2. **log vs log1p inconsistency.** The map cell computes
    `log_loan_per_100k = np.log1p(loan_per_100k)`, while the regression tables use plain `np.log`
    (via `log_total_loan_amount`, already log-transformed upstream) for the same underlying quantity.

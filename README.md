@@ -1,57 +1,83 @@
-## Data note
-Raw data files (e.g. loans.csv, Kiva datasets) are not included due to size constraints.
-All analysis scripts assume data are stored locally under the /data directory.
+# Kiva Microfinance and Economic Development
+
+This repository contains the data pipeline, econometric analysis, robustness checks, and paper for a study of how Kiva microfinance activity changes with economic development. The project separates three empirical questions that are often conflated: whether Kiva operates in a country, how much it lends there, and how large an individual loan is.
+
+[Read the compiled research paper](paper/main.pdf)
+
+## Research question
+
+Does Kiva lending follow an inverted-U, or “middle-income peak,” as countries develop? The analysis tests that hypothesis separately at the extensive margin (country entry), quantity margin (total lending), and size margin (individual loan amount).
 
 ## Main findings
 
-The paper tests whether Kiva microfinance activity follows an inverted-U ("middle-income peak") pattern
-with economic development, at three distinct margins:
+1. **Individual loan size is significantly U-shaped.** The preferred loan-level quadratic model has a positive, statistically significant quadratic term. The Lind–Mehlum test confirms that the curve turns within the observed range, and the result survives excluding the United States, adding sector fixed effects, changing the clustering level, and deflating loan size by local prices.
+2. **Total lending volume does not show a statistically significant inverted-U.** The quadratic term is negative but insignificant in the country-year OLS models and in PPML specifications both with and without zero-lending country-years.
+3. **Kiva entry is significantly concave, but a complete inverted-U is not formally established.** The extensive-margin Logit quadratic term is significant, as is its average marginal effect, but the Lind–Mehlum test does not confirm the required initial rise at the low end of the development range.
 
-1. **Extensive margin (country level): does Kiva operate in a country at all?** Significantly concave,
-   with a steep decline. A Logit model on a global country-year panel (including true zero-lending
-   country-years, not just Kiva-active ones) finds a negative, statistically significant quadratic term
-   (p = 0.023; average marginal effect p = 0.018), and entry probability falls sharply as countries
-   develop. Held to the same Lind–Mehlum (2010) U-test as the other margins, the high end of this decline
-   is confirmed but the initial rise among the very poorest countries is not statistically distinguishable
-   from flat — so a completed inverted-U is suggestive but not formally established.
-2. **Quantity margin (country level, conditional on Kiva being active): how much total lending does a
-   country receive?** Not significantly nonlinear. The quadratic term in log GDP per capita is negative in
-   every country-year OLS specification but never significant (p > 0.10), and this holds whether estimated
-   in logs (dropping zeros) or with PPML on a zero-inclusive global sample (p = 0.16–0.53 across
-   specifications). The linear component is negative on average — volume trends down with development.
-3. **Size margin (loan level): how large is a typical individual loan?** Significantly U-shaped — the
-   opposite sign from the country-level curvature. The quadratic term is positive and significant at the
-   1% level, and survives excluding the US, adding sector fixed effects, and (with attenuated but still
-   significant magnitude) deflating by local price levels.
+The results imply that country entry, total lending, and individual loan size follow different development logics.
 
-These are three different empirical objects, not three tests of the same claim: a country can become less
-likely to receive any Kiva lending as it develops, while — conditional on receiving some — total volume and
-typical loan size follow different, and in one case opposite-signed, patterns.
+## Data
+
+The analysis combines:
+
+- 917,955 Kiva loan-level records, with 913,128 observations in the preferred loan-size regression;
+- World Bank indicators for GDP per capita, population, governance, institutions, and financial access;
+- an 84-country panel covering 2013–2017;
+- 357 country-year observations in the main Kiva-active panel; and
+- a 1,020-observation global country-year panel containing 646 true zero-lending country-years.
+
+The institutional-quality measure is a first principal component constructed from World Bank governance indicators.
+
+Raw Kiva loan files, including `loans.csv`, are not committed because of their size. Scripts that rebuild the analytical datasets expect the required raw files under `data/`. The processed datasets used by the paper are retained under `outputs/`.
 
 ## Methods
 
-- **Country-year and loan-level OLS**, country- and country-year-clustered standard errors respectively,
-  with linear, interaction, and quadratic (centered) specifications against log GDP per capita,
-  institutional quality, log population, and year fixed effects.
-- **Two-margin decomposition (extensive vs. intensive).** A global country-year panel merging World Bank
-  GDP-per-capita and population data (all non-aggregate WDI economies, 2013–2017) with Kiva loan totals
-  built from raw loan-posting data, outer-joined so that country-years with no Kiva loans appear as true
-  zeros rather than being dropped. The extensive margin (whether Kiva is active) is modeled with **Logit**
-  (country-clustered SE, average marginal effects via `get_margeff`); the intensive margin (total lending
-  volume, now including zeros) is modeled with **PPML** (Poisson pseudo-maximum-likelihood via
-  `statsmodels` GLM), estimated both on the full zero-inclusive sample and on the Kiva-only subsample.
-- **Lind–Mehlum (2010) U-test.** For any quadratic specification, a significant quadratic coefficient does
-  not by itself establish that the curve turns within the observed data range. Implemented from scratch:
-  the slope of the fitted curve at the sample's minimum and maximum X, each with a delta-method standard
-  error, tested as an intersection-union pair (the test statistic is the weaker of the two end t-statistics
-  — both ends must independently clear significance with opposite signs), plus a **Fieller (1954)
-  confidence interval** for the turning point that correctly accounts for it being a ratio of two
-  correlated estimated coefficients. Applied to the preferred country-year and loan-level quadratic models,
-  to the extensive-margin Logit (on its linear-index/log-odds scale), and to all loan-level robustness
-  variants.
-- **Sample-period and loan-level robustness checks**: a data-driven decision rule for whether to include
-  the panel's first year (2013) based on month/loan/country coverage in the raw data (year and month
-  extracted directly from Kiva's `posted_time` field); re-estimation excluding the United States; a
-  relative-loan-size specification (loan amount deflated by local GDP per capita, with an explicit check
-  for — and correction of — a Frisch-Waugh-Lovell mechanical-identity pitfall in the naive version of this
-  test); and sector fixed effects using Kiva's native sector classification.
+- Country-year and loan-level OLS with country- or country-year-clustered standard errors
+- PPML for total lending, including zero-lending country-years
+- Logit with average marginal effects for Kiva country entry
+- Lind–Mehlum intersection-union tests and Fieller confidence intervals for turning points
+- PCA institutional-quality index
+- Year and sector fixed effects and loan-level robustness specifications
+
+## Repository structure
+
+| Path | Contents |
+| --- | --- |
+| `paper_publication_version.ipynb` | Main executed analysis notebook |
+| `analysis/` | Data construction, merging, tables, plots, and World Bank data scripts |
+| `data/` | Small committed inputs and geographic reference files; raw Kiva files are excluded |
+| `outputs/` | Processed panels, regression tables, and result figures |
+| `paper/` | LaTeX source, compiled paper PDFs, generated tables and figures, and verification scripts |
+| `BASELINE_RESULTS.md` | Record of baseline estimates |
+| `DECISIONS.md` | Analysis and specification decisions |
+
+## Reproducing the analysis
+
+The repository does not currently include a pinned environment file or the large raw Kiva loan files, so a clean clone is not sufficient for full end-to-end reproduction.
+
+1. Restore the required raw Kiva files under `data/`.
+2. Create a Python/Jupyter environment containing the packages imported by the committed workflow: pandas, NumPy, Matplotlib, GeoPandas, Statsmodels, SciPy, IPython/Jupyter, nbformat, stargazer, wbdata, country-converter, and pycountry.
+3. Open `paper_publication_version.ipynb` and run the notebook from top to bottom.
+4. From the repository root, regenerate the paper tables, figures, and machine-readable key numbers with:
+
+   ```bash
+   python paper/export_assets.py
+   ```
+
+5. Cross-check the regenerated values against the stored notebook outputs with:
+
+   ```bash
+   python paper/verify_against_notebook.py
+   ```
+
+The verification report is written to `paper/ASSET_CHECK.md`. Package versions are not pinned, so numerical or rendering differences may occur across environments.
+
+## Selected result figure
+
+The following committed output compares loan amounts per capita across poverty terciles:
+
+![Loan amount per capita by poverty tercile](outputs/figures/fig4_loan_amount_per_capita_by_tercile.png)
+
+## Author
+
+Kexing Yan · 严可行
